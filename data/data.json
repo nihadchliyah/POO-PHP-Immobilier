@@ -1,0 +1,87 @@
+{
+    "biens": [
+        {
+            "type": "appartement",
+            "ville": "Lyon",
+            "prix": 180000,
+            "surface": 45,
+            "etage": 3,
+            "ascenseur": true,
+            "typeAppartement": "T3"
+        },
+        {
+            "type": "appartement",
+            "ville": "Paris",
+            "prix": 320000,
+            "surface": 38,
+            "etage": 7,
+            "ascenseur": true,
+            "typeAppartement": "T2"
+        },
+        {
+            "type": "appartement",
+            "ville": "Bordeaux",
+            "prix": 95000,
+            "surface": 30,
+            "etage": 1,
+            "ascenseur": false,
+            "typeAppartement": "Studio"
+        },
+        {
+            "type": "maison",
+            "ville": "Marseille",
+            "prix": 450000,
+            "surface": 120,
+            "nbChambres": 4,
+            "jardin": true,
+            "surfaceJardin": 200,
+            "garage": "Double garage"
+        },
+        {
+            "type": "maison",
+            "ville": "Nantes",
+            "prix": 280000,
+            "surface": 90,
+            "nbChambres": 3,
+            "jardin": true,
+            "surfaceJardin": 80,
+            "garage": "Garage simple"
+        },
+        {
+            "type": "maison",
+            "ville": "Toulouse",
+            "prix": 210000,
+            "surface": 75,
+            "nbChambres": 3,
+            "jardin": false,
+            "surfaceJardin": 0,
+            "garage": ""
+        },
+        {
+            "type": "local",
+            "ville": "Paris",
+            "prix": 850000,
+            "surface": 200,
+            "activite": "Restaurant"
+        },
+        {
+            "type": "local",
+            "ville": "Lyon",
+            "prix": 320000,
+            "surface": 80,
+            "activite": "Pharmacie"
+        }
+    ],
+    "proprietaires": [
+        {
+            "nom": "Alice Martin",
+            "email": "alice@immo.fr",
+            "biens": [0, 4, 7]
+        },
+        {
+            "nom": "Bob Dupont",
+            "email": "bob@immo.fr",
+            "biens": [1, 3]
+        }
+    ]
+}
