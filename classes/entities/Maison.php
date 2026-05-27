@@ -1,7 +1,9 @@
 <?php
 
-class Maison extends BienTransactionnel implements Descriptible
+class Maison extends BienImmobilier implements Louable, Vendable, Estimable, Descriptible
 {
+    use LocationTrait, VenteTrait, EstimationTrait, StatutTrait;
+
     private int    $nbChambres;
     private bool   $jardin;
     private float  $surfaceJardin;

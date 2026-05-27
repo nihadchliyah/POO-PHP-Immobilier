@@ -4,23 +4,13 @@ class BienRepository
 {
     private array $biens = [];
 
-    public function charger(array $donnees): void
+    public function charger(DataSourceInterface $source): void
     {
-        foreach ($donnees as $data) {
-            $this->biens[] = match($data['type']) {
-                'appartement' => new Appartement(
-                    $data['ville'], $data['prix'], $data['surface'],
-                    $data['etage'], $data['ascenseur'], $data['typeAppartement']
-                ),
-                'maison' => new Maison(
-                    $data['ville'], $data['prix'], $data['surface'],
-                    $data['nbChambres'], $data['jardin'], $data['surfaceJardin'], $data['garage']
-                ),
-                'local' => new Local(
-                    $data['ville'], $data['prix'], $data['surface'], $data['activite']
-                ),
-                default => throw new InvalidArgumentException("Type de bien inconnu : {$data['type']}"),
-            };
+        $donnees = $source->recupererDonnees();
+        $biensData = $donnees['biens'] ?? [];
+        
+        foreach ($biensData as $data) {
+            $this->biens[] = BienFactory::creerDepuisTableau($data);
         }
     }
 

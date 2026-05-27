@@ -2,6 +2,20 @@
 
 require_once __DIR__ . '/autoload.php';
 
+BienFactory::enregistrerType('appartement', fn($data) => new Appartement(
+    $data['ville'], (float)$data['prix'], (float)$data['surface'],
+    (int)$data['etage'], (bool)($data['ascenseur'] ?? false), (string)($data['typeAppartement'] ?? "")
+));
+
+BienFactory::enregistrerType('maison', fn($data) => new Maison(
+    $data['ville'], (float)$data['prix'], (float)$data['surface'],
+    (int)$data['nbChambres'], (bool)($data['jardin'] ?? false), (float)($data['surfaceJardin'] ?? 0), (string)($data['garage'] ?? "")
+));
+
+BienFactory::enregistrerType('local', fn($data) => new Local(
+    $data['ville'], (float)$data['prix'], (float)$data['surface'], (string)$data['activite']
+));
+
 header('Content-Type: text/plain; charset=utf-8');
 
 function afficherDescriptionEstimee(Descriptible&Estimable $bien, int $annees = 5): string
@@ -14,13 +28,13 @@ function afficherDescriptionEstimee(Descriptible&Estimable $bien, int $annees = 
     );
 }
 
-$data = json_decode(file_get_contents(__DIR__ . '/data/data.json'), true);
+$source = new JsonDataSource(__DIR__ . '/data/data.json');
 
 $bienRepo = new BienRepository();
-$bienRepo->charger($data['biens']);
+$bienRepo->charger($source);
 
 $propRepo = new ProprietaireRepository();
-$propRepo->charger($data['proprietaires'], $bienRepo);
+$propRepo->charger($source, $bienRepo);
 
 $catalogue = $bienRepo->tous();
 $recherche = new RechercheService();

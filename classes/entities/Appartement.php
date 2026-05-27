@@ -1,7 +1,12 @@
 <?php
 
-class Appartement extends BienTransactionnel implements Descriptible
+class Appartement extends BienImmobilier implements Louable, Vendable, Estimable, Descriptible
 {
+    use LocationTrait {
+        louer as private louerBase;
+    }
+    use VenteTrait, EstimationTrait, StatutTrait;
+
     private int    $etage;
     private bool   $ascenseur;
     private string $typeAppartement;
@@ -38,7 +43,7 @@ class Appartement extends BienTransactionnel implements Descriptible
                 $this->getSurface()
             );
         }
-        return parent::louer($loyerMensuel);
+        return $this->louerBase($loyerMensuel);
     }
 
     public function calculerPrixAuMetreCarre(): float

@@ -4,9 +4,12 @@ class ProprietaireRepository
 {
     private array $proprietaires = [];
 
-    public function charger(array $donnees, BienRepository $bienRepo): void
+    public function charger(DataSourceInterface $source, BienRepository $bienRepo): void
     {
-        foreach ($donnees as $data) {
+        $donnees = $source->recupererDonnees();
+        $propriosData = $donnees['proprietaires'] ?? [];
+
+        foreach ($propriosData as $data) {
             $proprio = new Proprietaire($data['nom'], $data['email']);
             foreach ($data['biens'] as $index) {
                 $bien = $bienRepo->get($index);

@@ -2,9 +2,10 @@
 
 class Local extends BienImmobilier implements Vendable, Estimable, Descriptible
 {
+    use VenteTrait;
+
     private string     $activite;
     private StatutBien $statut    = StatutBien::Disponible;
-    private float      $prixVente = 0;
 
     public function __construct(string $ville, float $prix, float $surface, string $activite)
     {
@@ -13,19 +14,6 @@ class Local extends BienImmobilier implements Vendable, Estimable, Descriptible
     }
 
     public function getActivite(): string { return $this->activite; }
-
-    public function vendre(float $prixVente): string
-    {
-        if ($this->statut === StatutBien::Vendu) {
-            return "Le local de {$this->getVille()} est déjà vendu.";
-        }
-        $this->statut    = StatutBien::Vendu;
-        $this->prixVente = $prixVente;
-        return "Local commercial ({$this->activite}) de {$this->getVille()} vendu pour {$prixVente} €.";
-    }
-
-    public function isVendu(): bool       { return $this->statut === StatutBien::Vendu; }
-    public function getPrixVente(): float  { return $this->prixVente; }
 
     public function calculerPrixTotal(float $tauxNotaire = 7.5): float
     {
