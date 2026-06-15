@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nina Immo — TP POO PHP
 
 Projet de travaux pratiques réalisé dans le cadre de la formation **IT-Akademy 2026**.  
@@ -148,3 +149,6 @@ annonces
 ## Auteur
 
 **Nihad Chliyah** — IT-Akademy 2026
+=======
+# POO-PHP-Immobilier
+>>>>>>> 5dbae63870d326a2e99e0aa536634ca078edc459
